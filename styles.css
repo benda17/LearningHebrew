@@ -1,0 +1,82 @@
+/* General Styles */
+body {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    background: linear-gradient(135deg, #fdd835, #ffb74d);
+    color: #333;
+  }
+  
+  h1, h2 {
+    font-family: 'Rubik Wet Paint', cursive;
+    color: #d32f2f;
+    text-shadow: 2px 2px #ffc107;
+  }
+  
+  /* App Layout */
+  .app {
+    text-align: center;
+  }
+  
+  header {
+    background-color: #fff9c4;
+    padding: 20px;
+    border-bottom: 5px solid #fbc02d;
+  }
+  
+  .noa-picture {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  /* Learning Section */
+  .letter-cards, .word-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 20px;
+  }
+  
+  .card {
+    background: #fff8e1;
+    border: 2px solid #ff7043;
+    border-radius: 10px;
+    padding: 10px;
+    width: 120px;
+    height: 160px;
+    text-align: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card img {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .card button {
+    background: #fdd835;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-top: 5px;
+    cursor: pointer;
+  }
+  
+  /* Sentence Builder */
+  .sentence-builder {
+    margin-top: 20px;
+  }
+  
+  #word-bank .card {
+    cursor: grab;
+  }
+  
+  footer {
+    padding: 10px;
+    background: #fff3e0;
+    border-top: 5px solid #ffb300;
+  }
+  

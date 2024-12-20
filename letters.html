@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn Hebrew Letters</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@400;600&display=swap">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #ffb3c1, #ff8fa3);
+      color: #444;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-family: 'Caveat', cursive;
+      color: #ff4081;
+      text-shadow: 1px 1px 4px #ffc0cb;
+      font-size: 2.5rem;
+    }
+
+    .cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .card {
+      background: #fffafc;
+      border: 2px solid #ffb3c1;
+      border-radius: 15px;
+      padding: 10px;
+      width: 120px;
+      height: 160px;
+      text-align: center;
+      box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.1);
+    }
+
+    .card p {
+      font-size: 2rem;
+    }
+
+    .card button {
+      background: #ff80ab;
+      border: none;
+      border-radius: 10px;
+      padding: 5px 10px;
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+    }
+
+    .card button:hover {
+      background: #ff4081;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📖 Learn the Hebrew Alphabet</h1>
+    <div class="cards" id="letters"></div>
+    <a href="index.html" style="display: block; margin-top: 30px; text-decoration: none; color: #ff4081;">🔙 Back to Home</a>
+  </div>
+
+  <script>
+    const letters = [
+      "א", "ב", "ג", "ד", "ה", "ו", "ז", "ח", "ט", "י", 
+      "כ", "ל", "מ", "נ", "ס", "ע", "פ", "צ", "ק", "ר", "ש", "ת"
+    ];
+
+    const loadLetters = () => {
+      const container = document.getElementById("letters");
+      letters.forEach(letter => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+          <p>${letter}</p>
+          <button onclick="playSound('${letter}')">🔊 Hear</button>`;
+        container.appendChild(card);
+      });
+    };
+
+    const playSound = (text) => {
+      fetch('/api/synthesize', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to fetch audio');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          const audio = new Audio(data.audioUrl);
+          audio.play();
+        })
+        .catch((error) => {
+          console.error('Error playing sound:', error);
+          alert('Failed to play sound. Please try again.');
+        });
+    };
+
+    document.addEventListener("DOMContentLoaded", loadLetters);
+  </script>
+</body>
+</html>
